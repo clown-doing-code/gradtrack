@@ -19,7 +19,7 @@ export function TestCard1({
   totalCredits,
 }: UniversityProgressProps) {
   const percentageCompleted = Math.round(
-    (creditsCompleted / totalCredits) * 100
+    (creditsCompleted / totalCredits) * 100,
   );
   const creditsMissing = totalCredits - creditsCompleted;
 
@@ -41,7 +41,7 @@ export function TestCard1({
         </div>
       </CardContent>
       <CardFooter>
-        <p className="text-center font-semibold mt-auto">
+        <p className="mt-auto text-center font-semibold">
           {percentageCompleted}% completado
         </p>
       </CardFooter>

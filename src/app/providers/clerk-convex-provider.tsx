@@ -6,7 +6,7 @@ import { PropsWithChildren } from "react";
 import { esES } from "@clerk/localizations";
 
 const convex = new ConvexReactClient(
-  process.env.NEXT_PUBLIC_CONVEX_URL as string
+  process.env.NEXT_PUBLIC_CONVEX_URL as string,
 );
 
 export function ClerkConvexProvider({ children }: PropsWithChildren) {

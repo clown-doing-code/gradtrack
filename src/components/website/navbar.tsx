@@ -18,7 +18,7 @@ export default function Header({ isAuthenticated }: HeaderProps) {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border shadow-md">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
@@ -28,11 +28,11 @@ export default function Header({ isAuthenticated }: HeaderProps) {
             </Link>
           </div>
 
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden space-x-8 md:flex">
             <NavLinks />
           </nav>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden items-center space-x-4 md:flex">
             <AuthButtons isAuthenticated={isAuthenticated} />
             <ThemeSwitcher />
           </div>
@@ -73,7 +73,7 @@ export default function Header({ isAuthenticated }: HeaderProps) {
 function NavLinks({ mobile = false }: { mobile?: boolean }) {
   const linkClass = cn(
     "text-foreground transition-colors hover:text-primary",
-    mobile && "block px-3 py-2 text-base font-medium"
+    mobile && "block px-3 py-2 text-base font-medium",
   );
 
   return (
@@ -104,7 +104,7 @@ function AuthButtons({
         <Link href="/dashboard">
           <Button
             size={"sm"}
-            className={cn(mobile && "w-full flex items-center gap-1")}
+            className={cn(mobile && "flex w-full items-center gap-1")}
           >
             Abrir el panel
             <ArrowRight className="ml-1 h-5 w-5" />

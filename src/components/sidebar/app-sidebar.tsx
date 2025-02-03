@@ -46,7 +46,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <Link href="/" className="flex items-center space-x-2">
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg ">
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <GraduationCap className="size-4" />
             </div>

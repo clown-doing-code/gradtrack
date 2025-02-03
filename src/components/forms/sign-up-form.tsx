@@ -118,7 +118,7 @@ export default function SignUpForm() {
                         ¿Ya tienes una cuenta?{" "}
                         <Link
                           href="/auth/sign-in"
-                          className="hover:underline underline-offset-4"
+                          className="underline-offset-4 hover:underline"
                         >
                           Iniciar sesión
                         </Link>
@@ -158,13 +158,13 @@ export default function SignUpForm() {
                                         "z-10 ring-2 ring-ring ring-offset-background":
                                           status === "cursor" ||
                                           status === "selected",
-                                      }
+                                      },
                                     )}
                                   >
                                     {value}
                                     {status === "cursor" && (
                                       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                                        <div className="animate-caret-blink h-4 w-px bg-foreground duration-1000" />
+                                        <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
                                       </div>
                                     )}
                                   </div>

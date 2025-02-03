@@ -7,7 +7,7 @@ import { Progress } from "../ui/progress";
 
 export default function Banner() {
   return (
-    <section className="px-4 py-12 text-center sm:px-6 lg:px-8 lg:py-20 ">
+    <section className="px-4 py-12 text-center sm:px-6 lg:px-8 lg:py-20">
       <MaxWidthWrapper>
         <div className="container mx-auto max-w-4xl">
           <div className="mb-8 lg:mb-12">

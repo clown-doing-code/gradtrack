@@ -36,7 +36,7 @@ export default defineSchema({
     status: v.union(
       v.literal("completed"),
       v.literal("in-progress"),
-      v.literal("not-taken")
+      v.literal("not-taken"),
     ),
   }).index("userId_subjectId", ["userId", "subjectId"]),
 });

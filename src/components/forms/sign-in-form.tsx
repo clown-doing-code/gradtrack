@@ -88,7 +88,7 @@ export default function SignInForm() {
                         ¿No tienes una cuenta?{" "}
                         <Link
                           href="/auth/sign-up"
-                          className="hover:underline underline-offset-4"
+                          className="underline-offset-4 hover:underline"
                         >
                           Regístrate
                         </Link>
@@ -210,7 +210,7 @@ export default function SignInForm() {
                         <Clerk.Label className="sr-only">
                           Código de verificación de correo electrónico
                         </Clerk.Label>
-                        <div className="grid gap-y-2 items-center justify-center">
+                        <div className="grid items-center justify-center gap-y-2">
                           <div className="flex justify-center text-center">
                             <Clerk.Input
                               type="otp"
@@ -220,7 +220,7 @@ export default function SignInForm() {
                                 return (
                                   <div
                                     data-status={status}
-                                    className="relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md data-[status=selected]:ring-1 data-[status=selected]:ring-ring data-[status=cursor]:ring-1 data-[status=cursor]:ring-ring"
+                                    className="relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md data-[status=cursor]:ring-1 data-[status=selected]:ring-1 data-[status=cursor]:ring-ring data-[status=selected]:ring-ring"
                                   >
                                     {value}
                                   </div>
@@ -228,7 +228,7 @@ export default function SignInForm() {
                               }}
                             />
                           </div>
-                          <Clerk.FieldError className="block text-sm text-destructive text-center" />
+                          <Clerk.FieldError className="block text-center text-sm text-destructive" />
                           <SignIn.Action
                             asChild
                             resend

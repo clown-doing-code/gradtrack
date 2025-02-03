@@ -14,7 +14,7 @@ export function getRouteTitle(pathname: string): string {
   const dynamicRouteKey = Object.keys(routeTitles).find(
     (key) =>
       key.includes("[") &&
-      new RegExp(key.replace(/\[.*?\]/g, "[^/]+") + "$").test(pathname)
+      new RegExp(key.replace(/\[.*?\]/g, "[^/]+") + "$").test(pathname),
   );
 
   if (dynamicRouteKey) {

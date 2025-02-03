@@ -113,7 +113,7 @@ export default function TestCard4() {
       </CardContent>
       <CardFooter>
         <Button className="btn btn-primary">
-          <Globe className="h-4 w-4 " />
+          <Globe className="h-4 w-4" />
           Ir al sitio web
         </Button>
       </CardFooter>
