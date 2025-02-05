@@ -7,12 +7,9 @@ import { ArrowRight, GraduationCap, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeSwitcher } from "../theme-switcher";
 import SignOutButton from "../buttons/sign-out";
+import { useConvexAuth } from "convex/react";
 
-interface HeaderProps {
-  isAuthenticated: boolean;
-}
-
-export default function Header({ isAuthenticated }: HeaderProps) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -33,7 +30,7 @@ export default function Header({ isAuthenticated }: HeaderProps) {
           </nav>
 
           <div className="hidden items-center space-x-4 md:flex">
-            <AuthButtons isAuthenticated={isAuthenticated} />
+            <AuthButtons />
             <ThemeSwitcher />
           </div>
 
@@ -59,7 +56,7 @@ export default function Header({ isAuthenticated }: HeaderProps) {
         <div className="space-y-1 px-4 pb-3 pt-2">
           <NavLinks mobile />
           <div className="mt-4 flex flex-col space-y-2">
-            <AuthButtons isAuthenticated={isAuthenticated} mobile />
+            <AuthButtons mobile />
           </div>
           <div className="mt-4 flex justify-center">
             <ThemeSwitcher />
@@ -91,47 +88,43 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
   );
 }
 
-function AuthButtons({
-  isAuthenticated,
-  mobile = false,
-}: {
-  isAuthenticated: boolean;
-  mobile?: boolean;
-}) {
-  if (isAuthenticated) {
-    return (
-      <>
-        <Link href="/dashboard">
-          <Button
-            size={"sm"}
-            className={cn(mobile && "flex w-full items-center gap-1")}
-          >
-            Abrir el panel
-            <ArrowRight className="ml-1 h-5 w-5" />
-          </Button>
-        </Link>
-
-        <SignOutButton />
-      </>
-    );
-  }
+function AuthButtons({ mobile = false }: { mobile?: boolean }) {
+  const { isAuthenticated } = useConvexAuth();
 
   return (
     <>
-      <Link href="/auth/sign-in">
-        <Button size={"sm"} className={cn(mobile && "w-full")}>
-          Iniciar sesión
-        </Button>
-      </Link>
-      <Link href="/auth/sign-up">
-        <Button
-          variant="secondary"
-          size={"sm"}
-          className={cn(mobile && "w-full")}
-        >
-          Registrarse
-        </Button>
-      </Link>
+      {isAuthenticated ? (
+        <>
+          <Link href="/dashboard">
+            <Button
+              size={"sm"}
+              className={cn(mobile && "flex w-full items-center gap-1")}
+            >
+              Abrir el panel
+              <ArrowRight className="ml-1 h-5 w-5" />
+            </Button>
+          </Link>
+
+          <SignOutButton />
+        </>
+      ) : (
+        <>
+          <Link href="/auth/sign-in">
+            <Button size={"sm"} className={cn(mobile && "w-full")}>
+              Iniciar sesión
+            </Button>
+          </Link>
+          <Link href="/auth/sign-up">
+            <Button
+              variant="secondary"
+              size={"sm"}
+              className={cn(mobile && "w-full")}
+            >
+              Registrarse
+            </Button>
+          </Link>
+        </>
+      )}
     </>
   );
 }

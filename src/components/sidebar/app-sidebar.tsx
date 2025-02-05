@@ -26,7 +26,6 @@ const data = {
       title: "Inicio",
       url: "/dashboard",
       icon: LayoutPanelLeft,
-      isActive: true,
     },
     {
       title: "Asignarturas",

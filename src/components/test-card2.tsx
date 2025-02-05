@@ -27,7 +27,7 @@ export default function TestCard2() {
         <CardDescription>Asignaturas en curso actual</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <ScrollArea className="h-[100px] w-full rounded-md border p-4">
+        <ScrollArea className="h-[200px] w-full rounded-md border p-4">
           <div className="space-y-4">
             {currentCourses.map((course, i) => (
               <div key={i} className="flex items-start space-x-4">

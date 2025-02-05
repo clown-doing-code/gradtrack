@@ -2,41 +2,35 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+  cities: defineTable({
+    name: v.string(),
+  }),
+
   universities: defineTable({
     name: v.string(),
     location: v.string(),
+    founded: v.number(),
+    students: v.string(),
+    description: v.string(),
+    website: v.string(),
   }),
 
-  majors: defineTable({
+  faculty: defineTable({
     name: v.string(),
-    faculty: v.string(),
-    totalCredits: v.number(),
-    universityId: v.id("universities"),
-  }).index("universityId", ["universityId"]),
+    universityId: v.id("universities"), // Relación con la tabla de universidades
+  }),
 
-  subjects: defineTable({
-    code: v.string(),
+  careers: defineTable({
     name: v.string(),
-    credits: v.number(),
-    semester: v.union(v.number(), v.string()),
-    majorId: v.id("majors"),
-  }).index("majorId", ["majorId"]),
+    facultyId: v.id("faculty"),
+    universityId: v.id("universities"), // Relación con la tabla de universidades
+  }),
 
-  users: defineTable({
-    userId: v.string(),
-    city: v.string(),
+  userOnboarding: defineTable({
+    userId: v.string(), // ID del usuario de Clerk
+    cityId: v.id("cities"),
     universityId: v.id("universities"),
-    majorId: v.id("majors"),
-    onboardingComplete: v.boolean(),
-  }).index("userId", ["userId"]),
-
-  userSubjects: defineTable({
-    userId: v.string(),
-    subjectId: v.id("subjects"),
-    status: v.union(
-      v.literal("completed"),
-      v.literal("in-progress"),
-      v.literal("not-taken"),
-    ),
-  }).index("userId_subjectId", ["userId", "subjectId"]),
+    careerId: v.id("careers"),
+    facultyId: v.id("faculty"),
+  }),
 });

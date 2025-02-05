@@ -27,7 +27,7 @@ export default function TestCard3() {
         <CardDescription>Asignaturas completadas</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <ScrollArea className="h-[100px] w-full rounded-md border p-4">
+        <ScrollArea className="h-[200px] w-full rounded-md border p-4">
           <div className="space-y-4">
             {completedCourses.map((course, i) => (
               <div key={i} className="flex items-start space-x-4">

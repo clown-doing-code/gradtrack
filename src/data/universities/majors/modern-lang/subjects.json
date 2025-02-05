@@ -5,9 +5,11 @@
   "founded": "1538",
   "students": "169,657",
   "information": "La Universidad de Santo Domingo fue creada mediante la Bula In Apostolatus Culmine, expedida el 28 de octubre de 1538 por el Papa Paulo III, la cual elevó a esa categoría el Estudio General que los dominicos regenteaban desde el 1518, en Santo Domingo, sede virreinal de la colonización y el más viejo establecimiento colonial del Nuevo Mundo. La naciente Universidad inició sus enseñanzas organizadas en cuatro Facultades: Medicina, Derecho, Teología y Artes, conforme a las normas establecidas en la época para las instituciones similares de la metrópoli. Los estudios de Artes incluían dos modalidades, a saber: el “trivium” que comprendía la Gramática, la Retórica y la Lógica y el “quadrivium”, que englobaba la Aritmética, Geometría, Astronomía y Música”.",
+  "website": "https://university.edu.com",
   "majors": [
     {
       "name": "Licenciatura en Lenguas Modernas Mención Inglés (LEMI)",
+      "duration": "5 años",
       "totalCredits": 192,
       "subjects": [
         {

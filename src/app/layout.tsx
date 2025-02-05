@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ClerkConvexProvider } from "./providers/clerk-convex-provider";
+import { ClerkConvexProvider } from "@/app/providers/clerk-convex-provider";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,12 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkConvexProvider>
-      <html lang="en">
+      <html lang="es">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
+            <Toaster richColors position="top-center" />
           </ThemeProvider>
         </body>
       </html>
