@@ -6,8 +6,8 @@ import {
   BookCopy,
   GraduationCap,
   LayoutPanelLeft,
+  IdCard,
 } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -36,6 +36,11 @@ const data = {
       title: "Progreso",
       url: "/dashboard/progress",
       icon: ChartLine,
+    },
+    {
+      title: "Identificación",
+      url: "/dashboard/profile",
+      icon: IdCard,
     },
   ],
 };

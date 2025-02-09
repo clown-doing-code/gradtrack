@@ -2,7 +2,6 @@
 
 import { type LucideIcon } from "lucide-react";
 import { usePathname } from "next/navigation"; // Importar el hook
-
 import {
   SidebarGroup,
   SidebarGroupLabel,

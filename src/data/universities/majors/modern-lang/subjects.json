@@ -16,295 +16,247 @@
           "code": "DOP-1000",
           "name": "Orientación Institucional",
           "credits": 1,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "EFS-0110",
           "name": "Educación Física",
           "credits": 1,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "FIL-0110",
           "name": "Int A La Filosofía",
           "credits": 3,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "FIL-1250",
           "name": "Técnica De Investigación Y Est",
           "credits": 3,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "IDI-0230",
           "name": "Inglés Elemental I",
           "credits": 6,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "IDI-0510",
           "name": "Francés Elemental I",
           "credits": 5,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "LET-0110",
           "name": "Lengua Española Básica I",
           "credits": 3,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "SOC-0110",
           "name": "Int A Las Ciencias Sociales",
           "credits": 2,
-          "semester": 1
+          "semester": 1,
+          "prerequisites": []
         },
         {
           "code": "BIO-0140",
           "name": "Biología Básica",
           "credits": 3,
-          "semester": 2
+          "semester": 2,
+          "prerequisites": ["BIO-0110", "BIO-0130", "BIO-2100"]
         },
         {
           "code": "FIS-0140",
           "name": "Física Básica",
           "credits": 4,
-          "semester": 2
+          "semester": 2,
+          "prerequisites": [
+            "FIS-0120",
+            "FIS-0130",
+            "FIS-0180",
+            "FIS-0310",
+            "FIS-0510",
+            "FIS-1510",
+            "FIS-1520"
+          ]
         },
         {
           "code": "HIS-0110",
           "name": "Fund De His Social Dominicana",
           "credits": 3,
-          "semester": 2
+          "semester": 2,
+          "prerequisites": ["HIS-1100"]
         },
         {
           "code": "IDI-0240",
           "name": "Inglés Elemental II",
           "credits": 6,
-          "semester": 2
+          "semester": 2,
+          "prerequisites": ["IDI-0230"]
         },
         {
           "code": "IDI-0520",
           "name": "Francés Elemental II",
           "credits": 5,
-          "semester": 2
+          "semester": 2,
+          "prerequisites": ["IDI-0510"]
         },
         {
           "code": "LET-0120",
           "name": "Lengua Española Básica II",
           "credits": 3,
-          "semester": 2
+          "semester": 2,
+          "prerequisites": ["LET-0110"]
         },
         {
           "code": "HIS-1390",
           "name": "Historia De La Cultura Univers",
           "credits": 2,
-          "semester": 3
+          "semester": 3,
+          "prerequisites": ["HIS-0110"]
         },
         {
           "code": "IDI-1250",
           "name": "Inglés Intermedio I",
           "credits": 6,
-          "semester": 3
+          "semester": 3,
+          "prerequisites": ["IDI-0240"]
         },
         {
           "code": "IDI-1510",
           "name": "Francés Intermedio I",
           "credits": 5,
-          "semester": 3
+          "semester": 3,
+          "prerequisites": ["IDI-0520"]
         },
         {
           "code": "LET-1130",
           "name": "Lengua Española III",
           "credits": 3,
-          "semester": 3
+          "semester": 3,
+          "prerequisites": ["LET-0120"]
         },
         {
           "code": "LET-1240",
           "name": "Int A La Lingüística General",
           "credits": 3,
-          "semester": 3
+          "semester": 3,
+          "prerequisites": ["LET-0120"]
         },
         {
           "code": "MAT-0140",
           "name": "Matemática Básica",
           "credits": 4,
-          "semester": 3
+          "semester": 3,
+          "prerequisites": ["MAT-0120", "MAT-0130"]
         },
         {
           "code": "QUI-0140",
           "name": "Química Básica",
           "credits": 3,
-          "semester": 3
-        },
-        {
-          "code": "HIS-3130",
-          "name": "His De La Cultura Dom I",
-          "credits": 3,
-          "semester": 4
+          "semester": 3,
+          "prerequisites": ["QUI-0110", "QUI-0120"]
         },
         {
           "code": "IDI-1260",
           "name": "Inglés Intermedio II",
           "credits": 6,
-          "semester": 4
+          "semester": 4,
+          "prerequisites": ["IDI-1250"]
         },
         {
           "code": "IDI-1520",
           "name": "Francés Intermedio II",
           "credits": 5,
-          "semester": 4
+          "semester": 4,
+          "prerequisites": ["IDI-1510"]
         },
         {
           "code": "LET-1220",
           "name": "Morfología Y Sintaxis I",
           "credits": 3,
-          "semester": 4
-        },
-        {
-          "code": "PED-1110",
-          "name": "Int A La Educación",
-          "credits": 3,
-          "semester": 4
-        },
-        {
-          "code": "PSI-1050",
-          "name": "Int A La Psicología",
-          "credits": 3,
-          "semester": 4
-        },
-        {
-          "code": "FIL-1240",
-          "name": "Metodología De La Inv Cientif",
-          "credits": 3,
-          "semester": 5
+          "semester": 4,
+          "prerequisites": ["LET-0120"]
         },
         {
           "code": "IDI-1350",
           "name": "Gramática Inglesa",
           "credits": 5,
-          "semester": 5
+          "semester": 5,
+          "prerequisites": ["IDI-1260"]
         },
         {
           "code": "IDI-2230",
           "name": "Inglés Intermedio III",
           "credits": 5,
-          "semester": 5
-        },
-        {
-          "code": "LET-2230",
-          "name": "Fonética Y Fonología",
-          "credits": 3,
-          "semester": 5
-        },
-        {
-          "code": "LET-2470",
-          "name": "Literatura Dominicana I",
-          "credits": 3,
-          "semester": 5
-        },
-        {
-          "code": "LET-3210",
-          "name": "His De La Lengua Española I",
-          "credits": 4,
-          "semester": 5
+          "semester": 5,
+          "prerequisites": ["IDI-1260"]
         },
         {
           "code": "IDI-2240",
           "name": "Inglés Avanzado I",
           "credits": 5,
-          "semester": 6
+          "semester": 6,
+          "prerequisites": ["IDI-2230"]
         },
         {
           "code": "IDI-2280",
           "name": "Composición Inglesa I",
           "credits": 5,
-          "semester": 6
+          "semester": 6,
+          "prerequisites": ["IDI-1350", "IDI-2230"]
         },
         {
           "code": "IDI-2330",
           "name": "Fonética Inglesa",
           "credits": 4,
-          "semester": 6
-        },
-        {
-          "code": "IDI-2440",
-          "name": "Civiliz Norteam E Inglesa",
-          "credits": 3,
-          "semester": 6
-        },
-        {
-          "code": "IDI-3350",
-          "name": "Adquisición De Una Leng Extran",
-          "credits": 3,
-          "semester": 6
+          "semester": 6,
+          "prerequisites": ["IDI-2230"]
         },
         {
           "code": "IDI-2340",
           "name": "Estilística Inglesa",
           "credits": 3,
-          "semester": 7
-        },
-        {
-          "code": "IDI-2450",
-          "name": "Int Lit Paises Angloparlantes",
-          "credits": 3,
-          "semester": 7
+          "semester": 7,
+          "prerequisites": ["IDI-2240", "IDI-2280"]
         },
         {
           "code": "IDI-3230",
           "name": "Inglés Avanzado II",
           "credits": 4,
-          "semester": 7
-        },
-        {
-          "code": "IDI-3360",
-          "name": "Met De La Enseñanza Del Inglés",
-          "credits": 3,
-          "semester": 7
-        },
-        {
-          "code": "IDI-2460",
-          "name": "Literatura Inglesa Siglo XX",
-          "credits": 3,
-          "semester": 8
+          "semester": 7,
+          "prerequisites": ["IDI-2240"]
         },
         {
           "code": "IDI-3240",
           "name": "Inglés Avanzado III",
           "credits": 4,
-          "semester": 8
+          "semester": 8,
+          "prerequisites": ["IDI-3230"]
         },
         {
           "code": "IDI-3310",
           "name": "Historia Del Idioma Inglés",
           "credits": 3,
-          "semester": 8
-        },
-        {
-          "code": "IDI-3420",
-          "name": "Lit Norteamericana Siglo XX",
-          "credits": 3,
-          "semester": 8
+          "semester": 8,
+          "prerequisites": ["IDI-2240"]
         },
         {
           "code": "IDI-3480",
           "name": "Seminario De Tesis En Inglés",
           "credits": 3,
-          "semester": 8
-        },
-        {
-          "code": "IDI-Z120",
-          "name": "Asignatura Optativa de Idiomas",
-          "credits": 12,
-          "semester": 8
-        },
-        {
-          "code": "IDI-ZZ90",
-          "name": "Optativa de Otro Departamento",
-          "credits": 6,
-          "semester": 8
+          "semester": 8,
+          "prerequisites": ["IDI-3360"]
         },
         {
           "code": "IDI-6000",

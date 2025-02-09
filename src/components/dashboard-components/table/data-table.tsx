@@ -1,14 +1,17 @@
 "use client";
 
+import * as React from "react";
 import {
   type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
   flexRender,
   getCoreRowModel,
-  useReactTable,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  type SortingState,
-  getFilteredRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
 
 import {
@@ -21,14 +24,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -39,43 +35,46 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [filtering, setFiltering] = useState("");
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
     columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
-      globalFilter: filtering,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
     },
-    onSortingChange: setSorting,
-    onGlobalFilterChange: setFiltering,
   });
 
-  const countInProgressCourses = (data: TData[]) => {
-    return data.filter((course: any) => course.status === "in_progress").length;
-  };
-
   return (
-    <Card>
-      <CardHeader>
-        <CardDescription>
-          Aquí podrás interactuar con tu pensum universitario, revisar las
-          asignaturas que tienes pendiente actualmente y las que te faltan
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div>
+    <div>
+      <Card>
+        <CardContent>
           <div className="flex items-center py-4">
             <Input
-              placeholder="Filtrar asignaturas..."
-              value={filtering}
-              onChange={(e) => setFiltering(e.target.value)}
+              placeholder="Filtrar materias..."
+              value={
+                (table.getColumn("name")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("name")?.setFilterValue(event.target.value)
+              }
               className="max-w-sm"
             />
           </div>
@@ -86,7 +85,7 @@ export function DataTable<TData, TValue>({
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
                       return (
-                        <TableHead key={header.id}>
+                        <TableHead key={header.id} className="text-center">
                           {header.isPlaceholder
                             ? null
                             : flexRender(
@@ -107,7 +106,7 @@ export function DataTable<TData, TValue>({
                       data-state={row.getIsSelected() && "selected"}
                     >
                       {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
+                        <TableCell key={cell.id} className="text-center">
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext(),
@@ -129,31 +128,26 @@ export function DataTable<TData, TValue>({
               </TableBody>
             </Table>
           </div>
-        </div>
-      </CardContent>
-      <CardFooter className="flex items-center justify-between">
-        <p className="mt-auto text-center font-semibold">
-          Asignaturas cursando actualmente: {countInProgressCourses(data)}{" "}
-        </p>
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Anterior
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Siguiente
-          </Button>
-        </div>
-      </CardFooter>
-    </Card>
+          <div className="flex items-center justify-end space-x-2 py-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Anterior
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Siguiente
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

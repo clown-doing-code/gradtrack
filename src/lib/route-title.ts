@@ -2,6 +2,7 @@ export const routeTitles: Record<string, string> = {
   "/dashboard": "Panel Principal",
   "/dashboard/subjects": "Asignaturas",
   "/dashboard/progress": "Progreso",
+  "/dashboard/profile": "Identificación",
 };
 
 export function getRouteTitle(pathname: string): string {

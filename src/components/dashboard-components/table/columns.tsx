@@ -1,104 +1,149 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import {
+  MoreHorizontal,
+  CheckCircle2,
+  XCircle,
+  RefreshCcw,
+  PauseCircle,
+  Lock,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Check, Clock, MoreHorizontal, X } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import {
+  type Subject,
+  type SubjectStatus,
+  useSubjectsStore,
+} from "./subject-store";
 
-export type Course = {
-  id: string;
-  name: string;
-  code: string;
-  credits: number;
-  status: "completed" | "in_progress" | "pending";
-};
-
-const onStatusChange = (courseId: string, newStatus: Course["status"]) => {
-  // Implement your logic to change the course status here.  This is a placeholder.
-  console.log(`Changing status of course ${courseId} to ${newStatus}`);
-};
-
-export const columns: ColumnDef<Course>[] = [
+export const columns: ColumnDef<Subject>[] = [
   {
     accessorKey: "name",
-    header: "Asignatura",
+    header: "Nombre de la Materia",
   },
   {
     accessorKey: "code",
-    header: "Clave",
+    header: "Clave de la Materia",
   },
   {
     accessorKey: "credits",
     header: "Créditos",
   },
   {
-    accessorKey: "status",
+    accessorKey: "prerequisites",
+    header: "Prerequisitos",
+    cell: ({ row }) => {
+      const prerequisites = row.original.prerequisites;
+      return prerequisites.length > 0 ? prerequisites.join(", ") : "Ninguno";
+    },
+  },
+  {
+    id: "status",
     header: "Estado",
     cell: ({ row }) => {
-      const status = row.getValue("status") as string;
-
-      return (
-        <Badge
-          className={
-            status === "completed"
-              ? "bg-green-500"
-              : status === "in_progress"
-                ? "bg-blue-500"
-                : "bg-gray-500"
-          }
-        >
-          {status === "completed"
-            ? "Completada"
-            : status === "in_progress"
-              ? "Cursando"
-              : "Pendiente"}
-        </Badge>
-      );
+      const status = row.original.status;
+      const statusColors = {
+        cursando: "text-blue-600",
+        finalizado: "text-green-600",
+        "no cursado": "text-gray-600",
+        retirado: "text-red-600",
+      };
+      return <span className={statusColors[status]}>{status}</span>;
     },
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const course = row.original;
+      const subject = row.original;
+      const updateSubjectStatus = useSubjectsStore(
+        (state) => state.updateSubjectStatus,
+      );
+      const subjects = useSubjectsStore((state) => state.subjects);
+
+      const arePrerequisitesCompleted = () => {
+        return subject.prerequisites.every((prereq) => {
+          const prerequisiteSubject = subjects.find((s) => s.code === prereq);
+          return (
+            prerequisiteSubject && prerequisiteSubject.status === "finalizado"
+          );
+        });
+      };
+
+      const isDisabled = !arePrerequisitesCompleted();
+
+      const handleStatusChange = (newStatus: SubjectStatus) => {
+        updateSubjectStatus(subject.id, newStatus);
+      };
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Abrir menú</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              onClick={() => onStatusChange(course.id, "completed")}
-              className="text-green-600"
-            >
-              <Check className="mr-2 h-4 w-4" />
-              Marcar como completada
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => onStatusChange(course.id, "in_progress")}
-              className="text-blue-600"
-            >
-              <Clock className="mr-2 h-4 w-4" />
-              Marcar como cursando
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => onStatusChange(course.id, "pending")}
-              className="text-gray-600"
-            >
-              <X className="mr-2 h-4 w-4" />
-              Marcar como pendiente
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center justify-center">
+          {isDisabled ? (
+            <Lock className="h-4 w-4 text-gray-400" />
+          ) : (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 w-8 p-0">
+                  <span className="sr-only">Abrir menú</span>
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>Acciones</DropdownMenuLabel>
+                <DropdownMenuItem
+                  onClick={() => handleStatusChange("cursando")}
+                  className={
+                    subject.status === "cursando"
+                      ? "bg-blue-100 text-blue-900"
+                      : ""
+                  }
+                >
+                  <PauseCircle className="mr-2 h-4 w-4" />
+                  Cursando
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => handleStatusChange("finalizado")}
+                  className={
+                    subject.status === "finalizado"
+                      ? "bg-green-100 text-green-900"
+                      : ""
+                  }
+                >
+                  <CheckCircle2 className="mr-2 h-4 w-4" />
+                  Finalizado
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => handleStatusChange("no cursado")}
+                  className={
+                    subject.status === "no cursado"
+                      ? "bg-gray-100 text-gray-900"
+                      : ""
+                  }
+                >
+                  <XCircle className="mr-2 h-4 w-4" />
+                  No cursado
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => handleStatusChange("retirado")}
+                  className={
+                    subject.status === "retirado"
+                      ? "bg-red-100 text-red-900"
+                      : ""
+                  }
+                >
+                  <RefreshCcw className="mr-2 h-4 w-4" />
+                  Retirado
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+        </div>
       );
     },
   },

@@ -55,7 +55,6 @@ export const getCareersByUniversity = query({
   },
 });
 
-// En convex/onboarding.ts
 export const getUserOnboarding = query({
   args: { userId: v.string() },
   handler: async (ctx, { userId }) => {
@@ -96,5 +95,31 @@ export const hasCompletedOnboarding = query({
       .unique();
 
     return !!onboarding; // Devuelve true si el usuario completó el onboarding
+  },
+});
+
+// Obtener los datos del onboarding del usuario
+export const getUserOnboardingData = query({
+  args: { userId: v.string() },
+  handler: async (ctx, { userId }) => {
+    const onboarding = await ctx.db
+      .query("userOnboarding")
+      .filter((q) => q.eq(q.field("userId"), userId))
+      .unique();
+
+    if (!onboarding) return null;
+
+    // Obtener detalles de la ciudad, universidad, facultad y carrera
+    const city = await ctx.db.get(onboarding.cityId);
+    const university = await ctx.db.get(onboarding.universityId);
+    const faculty = await ctx.db.get(onboarding.facultyId);
+    const career = await ctx.db.get(onboarding.careerId);
+
+    return {
+      city,
+      university,
+      faculty,
+      career,
+    };
   },
 });

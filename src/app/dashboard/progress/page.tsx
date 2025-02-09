@@ -5,7 +5,7 @@ import React from "react";
 
 export default function ProgressPage() {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+    <div className="flex flex-1 flex-col gap-4 bg-muted p-4 py-4">
       <h1 className="text-2xl font-semibold">Mi Progreso</h1>
       <ProgressTracker
         totalCredits={54}
